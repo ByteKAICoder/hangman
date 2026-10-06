@@ -138,3 +138,46 @@ def hangman(picture_number:int,
                     {''.join(false_letters)}
                     Вы проиграли.\nЗагаданное слово: {word}"""
                  )
+
+
+def install_words(language:str='Rus')-> list:
+   match language:
+       case 'Eng':
+           file_path = 'english_words.txt'
+       case 'Rus':
+           file_path = 'russian_words.txt'
+
+   try:
+       with open(file_path, 'r', encoding='utf-8') as file:
+           words = file.read().splitlines()
+
+   except FileNotFoundError:
+       print('Ошибка! Файл не найден.\n'
+             'Использую список слов по умолчанию.'
+             )
+       words = (['корабль',
+                'виноград',
+                'космонавт',
+                'кенгуру',
+                'спортзал'] if language == 'Rus' else ['monkey',
+                                                       'tennis',
+                                                       'strawberry',
+                                                       'keyboard',
+                                                       'library']
+                )
+     
+   except UnicodeDecodeError:
+       print('Ошибка! Не удалось прочитать файл.\n'
+             'Использую список слов по умолчанию.'
+             )
+       words = ['корабль',
+                'виноград',
+                'космонавт',
+                'кенгуру',
+                'спортзал'] if language == 'Rus' else ['monkey',
+                                                       'tennis',
+                                                       'strawberry',
+                                                       'keyboard',
+                                                       'library']
+           
+   return words
