@@ -1,3 +1,6 @@
+from utils import install_words, hangman
+
+
 def user_input(text:str='',
               some_type:str='str',
               values:tuple=()
